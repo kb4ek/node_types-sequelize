@@ -4,12 +4,12 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import { connect } from './database/index';
 
-import index from './routes/index';
+import api from './routes/api';
 
 
 dotenv.config();
 
-connect(true, true).then(() => console.log("데이터베이스 연결 성공"));
+connect(false, true).then(() => console.log("데이터베이스 연결 성공"));
 
 const app: express.Application = express();
 
@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.use('/index', index)
+app.use('/api', api)
 
 app.use((req, res, next) => {
   // err.status = 404;
